@@ -18,6 +18,7 @@ $('#Login').submit(function (e) {
   // You need to change this.
   var email = 'yilianz4@gmail.com';
   var password = 'ddsgagafda';
+  console.log("email: "+email+"pwd: "+password);
 
   firebase
     .auth()
@@ -27,7 +28,7 @@ $('#Login').submit(function (e) {
       // ...
       console.log('login in');
       let user = firebase.auth().currentUser;
-
+window.location.href="Surveyresult.html";
       //user.updateProfile({ displayName: "Not sure" });
       if (user != null) {
         name = user.displayName;
@@ -45,3 +46,12 @@ $('#Login').submit(function (e) {
     });
 });
 
+$('#google').click(function(){
+const provider = new firebase.auth().googleauthprovider();
+firebase.auth().signinwithpopup(provider).then((result)=>{
+  const user = result.user;
+  console.log("Google User "+ user.email+" Log in");
+}).catch((error)=>{
+  console.log("Error Message"+ error.message);
+})
+});
