@@ -12,6 +12,25 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+
+firebase.auth().onAuthStateChanged((user)=>{
+  if (user){
+    console.log("We Have A User")
+  }
+  else {
+    console.log("No User")
+    window.location.href ='index.html'
+  }
+});
+
+$('#signout').click(function(){
+  firebase
+  .auth()
+  .signOut()
+  .then(()=>{
+    window.location.href
+  });
+});
 // save the data
 $(".sampleSurvey input[type='submit']").click(function(e) {
   e.preventDefault();
